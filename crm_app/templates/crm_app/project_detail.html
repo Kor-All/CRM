@@ -3,7 +3,7 @@
 {% block content %}
   <h2>{{ project.name }}</h2>
  
-  <p><strong>Компания:</strong> {{ project.company }}</p>
+  <p><strong>Компания:</strong> <a href="{{ project.company.get_absolute_url }}">{{ project.company }}</a></p>
 
   <p><strong>Описание:</strong> {{ project.description }}</p>
 
@@ -17,10 +17,10 @@
 
   <p><strong>Стоимость:</strong> {{ project.cost }}</p>
 
-  <p><strong>Взаимодействия по проекту</strong></p>
+  <p><strong><a href="{% url 'proj_messages' project.pk %}">Взаимодействия по проекту:</a></strong></p>
 
   {% for message in project.message_set.all %} 
-    <p> {{ message.description }} </p>
+    <p> <a href="{{ message.get_absolute_url }}">{{ message.description|slice:":50" }}</a> </p>
     <p> {{ message.date_time }} </p>  
   {% endfor %}
 

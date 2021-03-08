@@ -14,22 +14,22 @@
   <p><strong>Email:</strong> {% for email in company.email_set.all %} {{ email }}  {% endfor %}</p>
 
   <div>
+
+    <p><a href="{% url 'projects' company.pk %}"> Все проекты по компании</a></p>
+    
+    <p><a href="{% url 'comp_messages' company.pk %}">Все взаимодействия по компании</a></p>
+
+  </div>
+
+  <div>
     
     <h3>Проекты:</h3>
 
       {% for project in company.project_set.all %}
 
-        {{ project.name }}
+        <a href="{{ project.get_absolute_url }}">{{ project.name }}</a>
 
-        <p><strong>Взаимодействия по проекту</strong></p>
-
-        <br>
-
-          {% for message in project.message_set.all %} 
-            <p> {{ message.description }} </p>
-            <p> {{ message.date_time }} </p>  
-          {% endfor %}
-              
+                      
         <br>
       {% endfor %}
 

@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	<h3>Все взаимодействия по компании <a href="{% url 'company_detail' pk %}">{{ company }}</a>:</h3>
+
+      {% for message in message_list %}
+
+        <p><a href="{{ message.get_absolute_url }}">{{ message.description|slice:":100" }}</a></p>
+
+        <p> {{ message.date_time }} </p>
+
+        <hr>
+
+      {% endfor %}
+{% endblock %}

@@ -86,6 +86,9 @@ class Project(models.Model):
 		"""
 		return self.name
 
+	def get_absolute_url(self):
+		return reverse('project_detail', args=[str(self.id)])
+
 	class Meta:
 		verbose_name_plural='Проекты'
 		verbose_name='Проект'
@@ -120,6 +123,9 @@ class Message(models.Model):
 		String for representing the Model object
 		"""
 		return '%s (%s)' % (self.project.name, self.description[:30])
+
+	def get_absolute_url(self):
+		return reverse('message_detail', args=[str(self.id)])
 
 	class Meta:
 		verbose_name_plural='Взаимодействия'

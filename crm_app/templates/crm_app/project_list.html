@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <h3>Проекты по компании <a href="{% url 'company_detail' pk %}">{{ company }}</a>:</h3>
+
+      {% for project in project_list %}
+
+        <p><a href="{{ project.get_absolute_url }}">{{ project.name }}</a></p>
+
+        <p>Дата начала: {{ project.date_start }} </p>
+
+        <p>Стоимость: {{ project.cost }}</p>
+
+        <br> 
+        <hr>
+
+
+      {% endfor %}
+
+{% endblock %}
