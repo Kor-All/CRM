@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+ 
+  <p><strong>Проект:</strong> {{ message.project }}</p>
+
+  <p><strong>Менеджер:</strong> {{ message.manager.first_name }} {{ message.manager.last_name }}</p>
+
+  <p><strong>Описание:</strong> {{ message.description }}</p>
+
+  <p><strong>Дата и время:</strong> {{ message.date_time}}</p>
+
+  <p><strong>Канал взаимодействия:</strong> {{ message.get_circulation_channel_display }} </p>
+  
+  <p><strong>Оценка:</strong> {{ message.get_rating_display }} </p>
+
+
+  
+{% endblock %}

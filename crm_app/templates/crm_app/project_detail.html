@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>{{ project.name }}</h2>
+ 
+  <p><strong>Компания:</strong> {{ project.company }}</p>
+
+  <p><strong>Описание:</strong> {{ project.description }}</p>
+
+  <p><strong>Дата начала:</strong> {{project.date_start}}</p>
+
+  {% if project.date_finish %}
+
+  <p><strong>Дата окончания:</strong> {{ project.date_finish }}</p>
+
+  {% endif %}
+
+  <p><strong>Стоимость:</strong> {{ project.cost }}</p>
+
+  <p><strong>Взаимодействия по проекту</strong></p>
+
+  {% for message in project.message_set.all %} 
+    <p> {{ message.description }} </p>
+    <p> {{ message.date_time }} </p>  
+  {% endfor %}
+
+
+  
+{% endblock %}

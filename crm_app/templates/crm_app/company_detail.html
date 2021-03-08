@@ -1,0 +1,42 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ company.name }}</h1>
+
+  <p><strong>Директор:</strong> {{ company.director }}</a></p> 
+ 
+  <p><strong>Описание:</strong> {{ company.description }}</p>
+
+  <p><strong>Телефон:</strong> {% for phone in company.phone_set.all %} {{ phone }}  {% endfor %}</p>
+
+  <p><strong>Адрес:</strong> {% for address in company.address_set.all %} {{ address }}  {% endfor %}</p>
+
+  <p><strong>Email:</strong> {% for email in company.email_set.all %} {{ email }}  {% endfor %}</p>
+
+  <div>
+    
+    <h3>Проекты:</h3>
+
+      {% for project in company.project_set.all %}
+
+        {{ project.name }}
+
+        <p><strong>Взаимодействия по проекту</strong></p>
+
+        <br>
+
+          {% for message in project.message_set.all %} 
+            <p> {{ message.description }} </p>
+            <p> {{ message.date_time }} </p>  
+          {% endfor %}
+              
+        <br>
+      {% endfor %}
+
+
+
+
+  </div>
+
+  
+{% endblock %}

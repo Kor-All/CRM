@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    {% if message_list %}
+    <ul>
+
+      {% for message in message_list %}
+      <li>
+        <a href="{{ message.get_absolute_url }}">{{ message.description|slice:":50" }}</a> 
+        <p>{{ message.date_time }}</p>
+        <p>{{ message.get_rating_display }}</p>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no messages in the projectL.</p>
+    {% endif %} 
+{% endblock %}

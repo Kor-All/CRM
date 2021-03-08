@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 from datetime import date
 # Create your models here.
@@ -13,6 +14,9 @@ class Company(models.Model):
 		String for representing the Model object.
 		"""
 		return self.name
+
+	def get_absolute_url(self):
+		return reverse('company_detail', args=[str(self.id)])
 
 	class Meta:
 		verbose_name_plural='Компании'
@@ -115,7 +119,7 @@ class Message(models.Model):
 		"""
 		String for representing the Model object
 		"""
-		return '%s (%s)' % (self.id,self.project.name)
+		return '%s (%s)' % (self.project.name, self.description[:30])
 
 	class Meta:
 		verbose_name_plural='Взаимодействия'

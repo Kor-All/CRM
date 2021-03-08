@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	{% for comp in all_comp %}
+
+	<div>
+
+		<h3><a href="{% comp.get_absolute_url %}">{{ comp.name }}</a></h3>
+		<p>Директор: {{ comp.director }}</p>
+		<p>Телефон: {% for phone in comp.phone_set.all %} {{ phone }}  {% endfor %}</p>
+		<p>Адрес: {% for address in comp.address_set.all %} {{ address }}  {% endfor %}</p>
+		<br>
+	
+	</div>
+
+  	{% endfor %}
+
+{% endblock %}
+
