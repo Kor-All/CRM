@@ -1,48 +1,25 @@
 {% extends "base_generic.html" %}
-
+{% block button %}<a class="nav-item nav-link" href="{% url 'project_update' project.pk %}">Редактировать</a>{% endblock %}
 {% block content %}
   <h2>{{ project.name }}</h2>
- 
   <p><strong>Компания:</strong> <a href="{{ project.company.get_absolute_url }}">{{ project.company }}</a></p>
-
   <p><strong>Описание:</strong> {{ project.description }}</p>
-
   <p><strong>Дата начала:</strong> {{project.date_start}}</p>
-
   {% if project.date_finish %}
-
     <p><strong>Дата окончания:</strong> {{ project.date_finish }}</p>
-
   {% endif %}
-
   <p><strong>Стоимость:</strong> {{ project.cost }}</p>
-
   {% if project.message_set.all %} 
-
     <p><strong><a href="{% url 'proj_messages' project.pk %}">Взаимодействия по проекту:</a></strong></p>
-
     <ul>
-
     {% for message in project.message_set.all %} 
-
       <li>
-
       <p> <a href="{{ message.get_absolute_url }}">{{ message.description|slice:":50" }}</a> </p>
-
       <p> {{ message.date_time }} </p>  
-
       </li>
-
     {% endfor %}
-
     </ul>
-
-    <hr> <a href="{% url 'project_update' project.pk %}">Редактировать</a>
-
   {% else %}
-
     <h3>У этого проекта ещё нет взаимодействий.</h3>
-
-  {% endif %}
-  
+  {% endif %}  
 {% endblock %}

@@ -320,6 +320,18 @@ class MessageUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'crm_app.change_message'
 
 
-# class Profile(generic.DetailView):
-#    model = User
-        
+class UsersMessageListView(PermissionRequiredMixin, generic.ListView):
+    template_name = 'crm_app/users_message_list.html'
+    permission_required = 'crm_app.view_message'
+
+    def get_queryset(self):
+        return Message.objects.filter(manager=self.request.user).\
+        order_by(self.request.GET.get('orderby', 'date_time')).\
+        filter(description__contains=self.request.GET.get('filter', ''))
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['project'] = self.project
+    #     context['pk'] = self.kwargs['pk']
+    #     return context
+

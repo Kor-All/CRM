@@ -136,8 +136,6 @@ class Message(models.Model):
 		verbose_name='Взаимодействие'
 
 
-	
-		
 
 
 

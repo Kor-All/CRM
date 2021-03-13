@@ -18,10 +18,15 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from profiles import views as profiles_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 	path('crm/', include('crm_app.urls')),
 	path('', RedirectView.as_view(url='/crm/', permanent=True)),
+    path('profile/', profiles_views.profile, name='profile'),   
     path('accounts/', include('django.contrib.auth.urls')), 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

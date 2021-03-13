@@ -1,38 +1,46 @@
 {% extends "base_generic.html" %}
 
-{% block content %}
 
+
+{% block sort %} 
 <form action="" method="get" id="sortProduct">
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Сортировать:
-    <span class="dropdown-label"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item" href="?orderby=name">По названию</a></li>
-  	  <li><a class="dropdown-item" href="?orderby=-name">По названию(в обратном порядке)</a></li>
-  	  <li><a class="dropdown-item" href="?orderby=date_create">По дате создания</a></li>
-  	  <li><a class="dropdown-item" href="?orderby=-date_create">По дате создания(в обратном порядке)</a></li>
-  </ul>
+  <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Сортировать
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="?orderby=name">По названию</a>
+          <a class="dropdown-item" href="?orderby=-name">По названию(в обратном порядке)</a>
+          <a class="dropdown-item" href="?orderby=date_create">По дате создания</a>
+          <a class="dropdown-item" href="?orderby=-date_create">По дате создания(в обратном порядке)</a>
+        </div>
+      </li>
 </div>
 </form>
+{% endblock %}
+        
+{% block content %}
 
 	{% for comp in company_list %}
-
-	<div>
-
-		<h3><a href="{{ comp.get_absolute_url }}">{{ comp.name }}</a></h3>
-		<p>Директор: {{ comp.director }}</p>
-		<p>Телефон: {% for phone in comp.phone_set.all %} {{ phone }}  {% endfor %}</p>
-		<p>Адрес: {% for address in comp.address_set.all %} {{ address }}  {% endfor %}</p>
-		<p>Дата создания записи: {{ comp.date_create }}</p>
-		<br>
-	
-	</div>
-
-  	{% endfor %}
-
-
+  <div class="container">
+  <div class="row">
+    <div class="col">
+      <h3><a href="{{ comp.get_absolute_url }}">{{ comp.name }}</a></h3>
+    </div>
+    <div class="col">
+      <p>Директор: {{ comp.director }}</p>
+      <p>Телефон: {% for phone in comp.phone_set.all %} {{ phone }}  {% endfor %}</p>
+    </div>
+    <div class="w-100"></div>
+    <div class="col"></div>
+    <div class="col">
+      <p>Адрес: {% for address in comp.address_set.all %} {{ address }}  {% endfor %}</p>
+      <p>Дата создания записи: {{ comp.date_create }}</p>
+    </div>
+  </div>
+  </div><hr><br>
+  {% endfor %}
 
 {% endblock %}
 

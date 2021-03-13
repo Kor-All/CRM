@@ -35,7 +35,7 @@
 {% endblock %}
 {% block button %}<a class="nav-item nav-link" href="{% url 'message_create' %}">Добавить взаимодействие</a>{% endblock %}
 {% block content %}
-	<h4>Все взаимодействия по проекту "<a href="{{ project.get_absolute_url }}">{{ project }}</a>":</h4>
+	<h4>Все взаимодействия, которые добавил менеджер: {{ user.first_name }} {{ user.last_name }}</h4>
 	<hr><hr>
 	  <ul>
       {% for message in message_list %}
