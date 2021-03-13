@@ -20,6 +20,7 @@ class EmailInline(admin.TabularInline):
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
+	list_display = ('name', 'director', 'description', 'date_create')
 	inlines = [AddressInline, PhoneInline, EmailInline]
 
 

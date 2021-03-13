@@ -2,9 +2,32 @@
 
 {% block content %}
 
+	{% if project_list %}
+
+	<form action="" method="get" id="sortProduct">
+	<div class="dropdown">
+	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+	    Сортировать:
+	    <span class="dropdown-label"></span>
+	  </button>
+	  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+	      <li><a class="dropdown-item" href="?orderby=name">По названию</a></li>
+		  <li><a class="dropdown-item" href="?orderby=-name">По названию(в обратном порядке)</a></li>
+		  <li><a class="dropdown-item" href="?orderby=date_start">По дате начала проекта</a></li>
+		  <li><a class="dropdown-item" href="?orderby=-date_start">По дате начала проекта(в обратном порядке)</a></li>
+	  </ul>
+	</div>
+	</form>
+
+
+
     <h3>Проекты по компании <a href="{% url 'company_detail' pk %}">{{ company }}</a>:</h3>
 
+    <ul>
+
       {% for project in project_list %}
+
+      <li>
 
         <p><a href="{{ project.get_absolute_url }}">{{ project.name }}</a></p>
 
@@ -12,10 +35,20 @@
 
         <p>Стоимость: {{ project.cost }}</p>
 
-        <br> 
+      </li>
+       
         <hr>
 
 
       {% endfor %}
+
+    </ul>
+
+    <hr> <a href="{% url 'project_create' %}">Создать проект</a>
+
+	    {% else %}
+	      <p>Нет взаимодействий по компании {{company}}.</p>
+	    {% endif %} 
+
 
 {% endblock %}

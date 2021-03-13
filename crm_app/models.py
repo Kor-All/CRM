@@ -8,6 +8,8 @@ class Company(models.Model):
 	name = models.CharField('Компания', max_length=200)
 	director = models.CharField('Директор', max_length=200)
 	description = models.TextField('Описание')
+	date_create = models.DateField('Дата создания записи', auto_now_add=True)
+	date_edit = models.DateField('Дата редактирования записи', auto_now=True)
 
 	def __str__(self):
 		"""
@@ -21,6 +23,7 @@ class Company(models.Model):
 	class Meta:
 		verbose_name_plural='Компании'
 		verbose_name='Компания'
+		ordering = ['name']
 
 
 class Address(models.Model):
@@ -92,6 +95,7 @@ class Project(models.Model):
 	class Meta:
 		verbose_name_plural='Проекты'
 		verbose_name='Проект'
+		ordering = ['-name']
 
 
 class Message(models.Model):

@@ -2,15 +2,70 @@
 
 {% block content %}
 
+    {% if message_list %}
+
+    <form action="" method="get" id="sortProduct">
+		<div class="dropdown">
+		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+		    Сортировать:
+		    <span class="dropdown-label"></span>
+		  </button>
+		  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+		     	<li><a class="dropdown-item" href="?orderby=description">По тексту сообщения</a></li>
+			    <li><a class="dropdown-item" href="?orderby=-description">По тексту сообщения(в обратном порядке)</a></li>
+			    <li><a class="dropdown-item" href="?orderby=date_time">По времени создания </a></li>
+			    <li><a class="dropdown-item" href="?orderby=-date_time">По времени создания(в обратном порядке)</a></li>
+		  </ul>
+		</div>
+	</form>
+<br> 
+	<form action="" method="get" id="sortProduct">
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Фильтр:
+    <span class="dropdown-label"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="?filter=Lorem">Lorem</a></li>
+	  <li><a class="dropdown-item" href="?filter=Curabitur">Curabitur</a></li>
+	  <li><a class="dropdown-item" href="?filter=fermentum">fermentum</a></li>
+	  <li><a class="dropdown-item" href="?filter=sapien">sapien</a></li>
+	  </ul>
+  </ul>
+</div>
+</form>
+
+
+
 	<h3>Все взаимодействия по компании <a href="{% url 'company_detail' pk %}">{{ company }}</a>:</h3>
 
+	<ul>
+
       {% for message in message_list %}
+
+      <li>
 
         <p><a href="{{ message.get_absolute_url }}">{{ message.description|slice:":100" }}</a></p>
 
         <p> {{ message.date_time }} </p>
 
+        <p>Оценка: {{ message.get_rating_display }}</p>
+
+      </li>
+
         <hr>
 
       {% endfor %}
+
+    </ul>
+
+    <hr> <a href="{% url 'message_create' %}">Создать взаимодействие</a>
+
+
+	{% else %}
+
+	  <p>Нет взаимодействий по компании {{company}}.</p>
+
+	{% endif %} 
+
 {% endblock %}

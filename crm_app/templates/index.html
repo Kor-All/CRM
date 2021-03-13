@@ -2,7 +2,22 @@
 
 {% block content %}
 
-	{% for comp in all_comp %}
+<form action="" method="get" id="sortProduct">
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Сортировать:
+    <span class="dropdown-label"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="?orderby=name">По названию</a></li>
+  	  <li><a class="dropdown-item" href="?orderby=-name">По названию(в обратном порядке)</a></li>
+  	  <li><a class="dropdown-item" href="?orderby=date_create">По дате создания</a></li>
+  	  <li><a class="dropdown-item" href="?orderby=-date_create">По дате создания(в обратном порядке)</a></li>
+  </ul>
+</div>
+</form>
+
+	{% for comp in company_list %}
 
 	<div>
 
@@ -10,11 +25,14 @@
 		<p>Директор: {{ comp.director }}</p>
 		<p>Телефон: {% for phone in comp.phone_set.all %} {{ phone }}  {% endfor %}</p>
 		<p>Адрес: {% for address in comp.address_set.all %} {{ address }}  {% endfor %}</p>
+		<p>Дата создания записи: {{ comp.date_create }}</p>
 		<br>
 	
 	</div>
 
   	{% endfor %}
+
+
 
 {% endblock %}
 

@@ -13,6 +13,9 @@
 
   <p><strong>Email:</strong> {% for email in company.email_set.all %} {{ email }}  {% endfor %}</p>
 
+  {% if company.project_set.all %}
+
+
   <div>
 
     <p><a href="{% url 'projects' company.pk %}"> Все проекты по компании</a></p>
@@ -25,17 +28,30 @@
     
     <h3>Проекты:</h3>
 
+    <ul>
+
       {% for project in company.project_set.all %}
+
+      <li>
 
         <a href="{{ project.get_absolute_url }}">{{ project.name }}</a>
 
-                      
+      </li>
+
         <br>
       {% endfor %}
 
+    </ul>
+
+    <hr> <a href="{% url 'company_update' company.pk %}">Редактировать</a>
 
 
+    {% else %}
 
+    <h3>У этой компании ещё нет проектов.</h3>
+
+    {% endif %}
+      
   </div>
 
   

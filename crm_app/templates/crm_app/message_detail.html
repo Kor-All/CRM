@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 
+
 {% block content %}
  
   <p><strong>Проект:</strong> {{ message.project }}</p>
@@ -15,6 +16,8 @@
   <p><strong>Канал взаимодействия:</strong> {{ message.get_circulation_channel_display }} </p>
   
   <p><strong>Оценка:</strong> {{ message.get_rating_display }} </p>
+
+  <hr> <a href="{% url 'message_update' message.pk %}">Редактировать</a>
 
 
   
