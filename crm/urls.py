@@ -26,6 +26,7 @@ urlpatterns = [
 	path('', RedirectView.as_view(url='/crm/', permanent=True)),
     path('profile/', profiles_views.profile, name='profile'),   
     path('accounts/', include('django.contrib.auth.urls')), 
+    path('tinymce/', include('tinymce.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

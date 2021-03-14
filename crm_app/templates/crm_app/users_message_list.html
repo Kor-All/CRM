@@ -1,4 +1,5 @@
 {% extends "base_generic.html" %}
+{% block title %}<title>Messages</title>{% endblock %}
 {% block sort %} 
 <form action="" method="get" id="sortProduct">
 <div class="dropdown">
@@ -46,7 +47,7 @@
               <p> {{ message.date_time }} </p>
             </div>
             <div class="col-sm-4">
-              <p>Добавил : {{ user.first_name }} {{ user.last_name }}</p>
+              <p>Добавил : {{ message.manager.first_name }} {{ message.manager.last_name }}</p>
               <p>Оценка: {{ message.get_rating_display }}</p>
             </div>
           </div> 

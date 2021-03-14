@@ -3,11 +3,10 @@ from django.contrib import messages
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-# from django.apps import apps
 from crm_app.models import Message
 from .forms import UserUpdateForm, ProfileUpdateForm
 
-# Create your views here.
+
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -35,5 +34,4 @@ def profile(request):
 
 class MessageListView(LoginRequiredMixin, generic.ListView):
     model = Message
-    # model = apps.get_model('crm_app', 'Message')
     template_name = 'profiles/profile.html'

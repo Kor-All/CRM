@@ -1,4 +1,5 @@
 {% extends "base_generic.html" %} 
+{% block title %}<title>{{ company.name }}</title>{% endblock %}
 {% block button %}<a class="nav-item nav-link" href="{% url 'company_update' company.pk %}">Редактировать</a>{% endblock %}
 {% block content %}
   <h1>{{ company.name }}</h1>

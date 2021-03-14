@@ -1,13 +1,14 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 from datetime import date
 # Create your models here.
 
 class Company(models.Model):
 	name = models.CharField('Компания', max_length=200)
 	director = models.CharField('Директор', max_length=200)
-	description = models.TextField('Описание')
+	description = HTMLField('Описание')
 	date_create = models.DateField('Дата создания записи', auto_now_add=True)
 	date_edit = models.DateField('Дата редактирования записи', auto_now=True)
 

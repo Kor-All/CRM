@@ -29,6 +29,7 @@
             <div class="navbar-nav mr-auto">{% block button %}{% endblock %}</div>
             <div class="navbar-nav">
               {% if user.is_authenticated %}
+                {% block password_change %}{% endblock %}
                 <a class="nav-item nav-link" href="{% url 'profile' %}">{{ user.groups.first }}: {{ user.first_name }} {{ user.last_name }}</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Выход</a>
               {% else %}
