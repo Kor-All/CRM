@@ -9,6 +9,7 @@ from .forms import UserUpdateForm, ProfileUpdateForm
 
 @login_required
 def profile(request):
+    """Function update users profile"""
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -30,8 +31,3 @@ def profile(request):
     }
 
     return render(request, 'profile.html', context)
-
-
-class MessageListView(LoginRequiredMixin, generic.ListView):
-    model = Message
-    template_name = 'profiles/profile.html'

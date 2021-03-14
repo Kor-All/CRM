@@ -9,7 +9,12 @@ EmailFormSet = inlineformset_factory(Company, Email, fields=('email',))
 
 
 class CompanyForm(forms.ModelForm):
-  
+    """A class used to create the form for companies
+
+    Attributes (Meta):
+        model (class): Database's table
+        fields (list): List of fields.
+    """  
     class Meta:
         model = Company
         fields = ('name', 'director', 'description')

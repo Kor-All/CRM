@@ -6,6 +6,7 @@ from datetime import date
 # Create your models here.
 
 class Company(models.Model):
+	"""Company model."""
 	name = models.CharField('Компания', max_length=200)
 	director = models.CharField('Директор', max_length=200)
 	description = HTMLField('Описание')
@@ -28,7 +29,7 @@ class Company(models.Model):
 
 
 class Address(models.Model):
-	"""docstring for Address"""
+	"""Address model."""
 	company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, verbose_name='Компания')
 	address = models.CharField('Адрес', max_length=200)
 
@@ -44,7 +45,7 @@ class Address(models.Model):
 
 
 class Phone(models.Model):
-	"""docstring for Phone"""
+	"""Phone model."""	
 	company =  models.ForeignKey(Company, on_delete=models.CASCADE, null=True, verbose_name='Компания')
 	phone_number = models.CharField('Тел.номер', max_length=17, blank=True)
 
@@ -60,7 +61,7 @@ class Phone(models.Model):
 
 
 class Email(models.Model):
-	"""docstring for Email"""
+	"""Email model"""
 	company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, verbose_name='Компания')
 	email =  models.EmailField('Эл.почта')
 
@@ -76,7 +77,7 @@ class Email(models.Model):
 	
 		
 class Project(models.Model):
-	"""docstring for Project"""
+	"""Project model"""
 	company = models.ForeignKey(Company, on_delete=models.PROTECT, null=True, verbose_name='Компания')
 	name = models.CharField('Проект', max_length=200)
 	description = models.TextField('Описание')
@@ -100,7 +101,7 @@ class Project(models.Model):
 
 
 class Message(models.Model):
-	"""docstring for Message"""
+	"""Message model"""
 	project = models.ForeignKey(Project, on_delete=models.PROTECT, null=True, verbose_name='Проект')
 	manager =  models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Менеджер')
 	description = models.TextField('Описание')
