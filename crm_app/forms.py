@@ -3,9 +3,9 @@ from django.forms.models import inlineformset_factory
 from .models import Company, Address, Phone, Email
 
 
-AddressFormSet = inlineformset_factory(Company, Address, fields=('address',))
-PhoneFormSet = inlineformset_factory(Company, Phone, fields=('phone_number',))
-EmailFormSet = inlineformset_factory(Company, Email, fields=('email',))
+AddressFormSet = inlineformset_factory(Company, Address, form=forms.ModelForm, fields=('address',), extra=2)
+PhoneFormSet = inlineformset_factory(Company, Phone, form=forms.ModelForm, fields=('phone_number',), extra=2)
+EmailFormSet = inlineformset_factory(Company, Email, form=forms.ModelForm, fields=('email',), extra=2)
 
 
 class CompanyForm(forms.ModelForm):

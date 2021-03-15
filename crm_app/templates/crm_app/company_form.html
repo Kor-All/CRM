@@ -1,29 +1,15 @@
 {% extends "base_generic.html" %}
-
 {% block content %}
- 
-
 <form action="" method="post">
     {% csrf_token %}
     <table>
     {{ form.as_table }}
     </table>
-
     <div class="inline">
-    {{ form.address }}
-    
-
-    {{ phone_form }}
-
-    {{ email_form }}
-
+    <p>{{ address_form.as_table }}</p>
+    <p>{{ phone_form.as_table }}</p>
+    <p>{{ email_form.as_table }}</p>
     </div>
-
-
-    
-
-    
     <input type="submit" value="Submit" />
-
 </form>
 {% endblock %}

@@ -3,57 +3,28 @@
 {% block button %}<a class="nav-item nav-link" href="{% url 'company_update' company.pk %}">Редактировать</a>{% endblock %}
 {% block content %}
   <h1>{{ company.name }}</h1>
-
   <p><strong>Директор:</strong> {{ company.director }}</a></p> 
- 
   <p><strong>Описание:</strong> {{ company.description }}</p>
-
   <p><strong>Телефон:</strong> {% for phone in company.phone_set.all %} {{ phone }}  {% endfor %}</p>
-
   <p><strong>Адрес:</strong> {% for address in company.address_set.all %} {{ address }}  {% endfor %}</p>
-
   <p><strong>Email:</strong> {% for email in company.email_set.all %} {{ email }}  {% endfor %}</p>
-
   {% if company.project_set.all %}
-
-
   <div>
-
     <p><a href="{% url 'projects' company.pk %}"> Все проекты по компании</a></p>
-    
     <p><a href="{% url 'comp_messages' company.pk %}">Все взаимодействия по компании</a></p>
-
   </div>
-
   <div>
-    
     <h3>Проекты:</h3>
-
     <ul>
-
       {% for project in company.project_set.all %}
-
       <li>
-
         <a href="{{ project.get_absolute_url }}">{{ project.name }}</a>
-
       </li>
-
         <br>
       {% endfor %}
-
     </ul>
-
-    <hr> <a href="{% url 'company_update' company.pk %}">Редактировать</a>
-
-
     {% else %}
-
     <h3>У этой компании ещё нет проектов.</h3>
-
-    {% endif %}
-      
-  </div>
-
-  
+    {% endif %}      
+  </div> 
 {% endblock %}
